@@ -10,12 +10,12 @@ A CNN typically consists of three components:
 
 <img src="https://miro.medium.com/max/1838/1*xBkRA7cVyXGHIrtngV3qlg.png" alt="Convolutional Neural Networks — A Beginner&#39;s Guide | by Krut Patel |  Towards Data Science" style="zoom: 33%;" />
 
-​		Concolution Operation
+​		Concolution Operation <br>
 ​		source: [towardsdatascience](https://towardsdatascience.com/convolution-neural-networks-a-beginners-guide-implementing-a-mnist-hand-written-digit-8aa60330d022)
 
 <img src="https://miro.medium.com/max/652/1*NsiYxt8tPDQyjyH3C08PVA@2x.png" alt="img" style="zoom:50%;" />
 
-​														Movement of the Kernel
+​														Movement of the Kernel <br>
 ​														source: [towardsdatascience](https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53)
 
 > The convolution operation is basically taking the dot product of the image and the kernel. The kernel will traverse across the whole image in the way illustrated above with a specified stride value. Applying the filter in this way allows the CNN model to extract features from the images.
@@ -24,7 +24,7 @@ A CNN typically consists of three components:
 
 <img src="https://miro.medium.com/max/1000/1*KQIEqhxzICU7thjaQBfPBQ.png" alt="img" style="zoom:67%;" />
 
-​									Two Types of Pooling
+​									Two Types of Pooling <br>
 ​									source: [towardsdatascience](https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53)
 
 > The graph shows an example each for max pooling and average pooling. We can see that it's basically a way of downward sampling, as we only take a single value from the original 2×2 region. This reduces the input dimension and expedites the model training process.
@@ -33,7 +33,7 @@ A CNN typically consists of three components:
 
 <img src="https://miro.medium.com/max/850/1*GLQjM9k0gZ14nYF0XmkRWQ.png" alt="img" style="zoom:67%;" />
 
-​										Flattening of a 3x3 image matrix into a 9x1 vector
+​										Flattening of a 3x3 image matrix into a 9x1 vector <br>
 ​										source: [towardsdatascience](https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53)
 
 > The fully connected layers are similar to the hidden layers in tranditional neural networks. We usually first perform a flattening operation on the resulting input from previous steps (as shown in the graph above). This step flattens the input but does not affect the batch size. Then we will make the model prediction based on the vector input using these dense layers.
@@ -42,8 +42,8 @@ A CNN typically consists of three components:
 
 <img src="https://miro.medium.com/max/1400/1*uAeANQIOQPqWZnnuH-VEyw.jpeg" alt="img" style="zoom: 50%;" />
 
-​	A CNN sequence to classify handwritten digits
-​	Input - CONV - POOL - FC
+​	A CNN sequence to classify handwritten digits <br>
+​	Input - CONV - POOL - FC <br>
 ​	source: [towardsdatascience](https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53)
 
 To summarize, a CNN model basically chained all the aforementioned layers together. And by using different layer combinations, different parameters or optimizing methods, we aim to achieve the most satisfying prediction accuracy by extracting the valuable features from the original input. These high number of filters essentially learn to capture spatial features from the image based on the learned weights through back propagation. Hence they can successfully boil down a given image into a highly abstracted representation which is easy for predicting.
@@ -109,12 +109,15 @@ To summarize, a CNN model basically chained all the aforementioned layers togeth
 ➢ Detailed explanation of your code logic.
 
 1. SET SEED
+    
     I first set seed to ensure reproducible results for the model.
 
 2. READ DATA
+    
     Read train and test data from .mat files.
 
 3. PREPROCESS
+    
     For X, I move the last axes of array X to be the first in accordance with the input shape of (batch_size, imageside1, imageside2, channels). I scale the images to the [0, 1] range by dividing 255 since it can somehow normalize the data. 
     For y, I convert the class vectors to binary class matrices using one hot encoding.
 
@@ -123,9 +126,11 @@ To summarize, a CNN model basically chained all the aforementioned layers togeth
     I specify the model structure in this part. The `Sequential` class groups a linear stack of layers into a `tf.keras.Model`.
 
 5. TRAINING
+    
     The specified model is tained on training data using a particular batch size and epoch value. I use tensorboard to record the training logs and detect possibilities of under or over fittting.
 
 6. EVALUATION
+    
     The scores are evaluated on the test data to examine the model performance and its ability to make generalizations. Confusion matrix is plotted to provide information on the prediciton of each class.
 
     
@@ -176,7 +181,7 @@ Non-trainable params: 0
 _________________________________________________________________
 ```
 
-I decided to use the example model (a simple MNIST convnet) provided by Keras documentation site (and this assignment) as the starting point. [https://github.com/keras-team/keras-io/blob/master/examples/vision/mnist_convnet.py] As indicated on the Keras official website, this simple convnet achieves ~99% test accuracy on MNIST, which is fairly decent. Since the MNIST digit recognition task is similar in nature with the one we want to perform for Street View House Numbers (SVHN), I thought this could be a good starting point.
+I decided to use the example model (a simple [MNIST convnet](https://github.com/keras-team/keras-io/blob/master/examples/vision/mnist_convnet.py)) provided by Keras documentation site (and this assignment) as the starting point. As indicated on the Keras official website, this simple convnet achieves ~99% test accuracy on MNIST, which is fairly decent. Since the MNIST digit recognition task is similar in nature with the one we want to perform for Street View House Numbers (SVHN), I thought this could be a good starting point.
 
 # Final Model
 
@@ -184,7 +189,9 @@ I decided to use the example model (a simple MNIST convnet) provided by Keras do
 
 **Starting Model:**
 
-<img src="/Users/Celia/Library/Application Support/typora-user-images/截屏2021-12-21 下午4.35.30.png" alt="截屏2021-12-21 下午4.35.30" style="zoom:33%;" /><img src="/Users/Celia/Library/Application Support/typora-user-images/截屏2021-12-21 下午4.37.45.png" alt="截屏2021-12-21 下午4.37.45" style="zoom: 50%;" />
+
+<img src="https://user-images.githubusercontent.com/114009025/230476801-2009bd0c-6253-415d-bcbb-f1a4b4f97ada.png" width=25% height=25% /> &emsp; <img src="https://user-images.githubusercontent.com/114009025/230477336-8058a8f0-8260-425d-b53b-f79991b18219.png" width=50% height=50% />
+
 
 We can see that by deploying the baseline model from the MNIST example, I already achieved a quite decent test accuracy of ~90%. This suggests a quite promising direction, so I decided to only make small modifications based off of that.
 
@@ -265,13 +272,19 @@ _________________________________________________________________
 
 As shown in the graph, my final model achieved a test accuracy of 92.1%. As we can tell from the loss curve, both the training and validation loss go through a period of decrease and then gradaully plateaued. There's no sign of overfitting as there is no 'U' shape in either the validation accuracy or loss curve. The gap between the training and validation accuracy is relatively small. The only issue is that the value of loss seem to be slightly large in magnitude, which suggests further room for improvements.
 
-![截屏2021-12-21 下午8.50.38](/Users/Celia/Library/Application Support/typora-user-images/截屏2021-12-21 下午8.50.38.png)
+<kbd>
+    <img src="https://user-images.githubusercontent.com/114009025/230477859-579b0bff-6427-4b9d-b08c-f1ea7d5932ea.png"  />
+</kbd>
 
-<img src="/Users/Celia/Library/Application Support/typora-user-images/截屏2021-12-21 下午9.41.01.png" alt="截屏2021-12-21 下午8.50.38" style="zoom: 33%;" /><img src="/Users/Celia/Library/Application Support/typora-user-images/截屏2021-12-21 下午7.30.53.png" alt="截屏2021-12-21 下午7.30.53" style="zoom:50%;" />
+
+<img src="https://user-images.githubusercontent.com/114009025/230480409-7b4bdab0-e31b-4b1d-a59b-025026388f9b.png"  width=25% height=25% /> &emsp; <img src="https://user-images.githubusercontent.com/114009025/230478035-66e3a289-9828-48b1-a4a7-e300c1cf046b.png"  width=50% height=50% />
+
 
 I also plotted the confusion matrix for the test data set. As we can tell from the diagonal, the model did a pretty good job in correctly predicting the numbers. We will get a high precision and recall in this case.
 
-![image-20211221205504329](/Users/Celia/Library/Application Support/typora-user-images/image-20211221205504329.png)
+<kbd>
+    <img width="740" alt="截屏2023-04-06 下午3 39 34" src="https://user-images.githubusercontent.com/114009025/230478299-e168c53f-197f-45e0-9c12-f28ca6c158c1.png">
+</kbd>
 
 # Difficulties
 
@@ -320,12 +333,12 @@ As we can see from the count of labels, this Street View House Numbers (SVHN) da
 ## References
 
 + <5293 Class Notes>
-+ https://keras.io/api/layers/
-+ https://github.com/keras-team/keras-io/blob/master/examples/vision/mnist_convnet.py
-+ https://www.pyimagesearch.com/2018/12/31/keras-conv2d-and-convolutional-layers/  
-+ https://www.ibm.com/cloud/learn/convolutional-neural-networks
-+ https://towardsdatascience.com/a-guide-to-an-efficient-way-to-build-neural-network-architectures-part-ii-hyper-parameter-42efca01e5d7
-+ https://towardsdatascience.com/convolution-neural-networks-a-beginners-guide-implementing-a-mnist-hand-written-digit-8aa60330d022
++ [Keras layers API](https://keras.io/api/layers/)
++ [keras-io/examples/vision/mnist_convnet.py](https://github.com/keras-team/keras-io/blob/master/examples/vision/mnist_convnet.py)
++ [Keras Conv2D and Convolutional Layers](https://www.pyimagesearch.com/2018/12/31/keras-conv2d-and-convolutional-layers/)
++ [IBM: Convolutional Neural Networks](https://www.ibm.com/cloud/learn/convolutional-neural-networks)
++ [Towards Data Science: A guide to an efficient way to build neural network architectures- Part II](https://towardsdatascience.com/a-guide-to-an-efficient-way-to-build-neural-network-architectures-part-ii-hyper-parameter-42efca01e5d7)
++ [Towards Data Science: Convolutional Neural Networks — A Beginner’s Guide](https://towardsdatascience.com/convolution-neural-networks-a-beginners-guide-implementing-a-mnist-hand-written-digit-8aa60330d022)
 
 
 
